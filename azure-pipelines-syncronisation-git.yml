@@ -11,11 +11,5 @@ steps:
   persistCredentials: true
 
 - script: |
-    git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
-    git fetch azure
-
-    git branch -r | grep -v '\->' | sed 's/origin\///' | while read branch; do
-        git push azure --delete "$branch" || true 
-    done
-
+    git branch
   displayName: "Supprimer toutes les branches du dépôt Azure DevOps"
