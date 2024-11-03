@@ -4,7 +4,7 @@ trigger:
       - main  # Déclenche le pipeline pour chaque commit sur la branche "main" de GitHub
 
 pool:
-  name: 'timothee'
+  name: 'default'
 
 steps:
 - checkout: self
