@@ -11,5 +11,12 @@ steps:
   persistCredentials: true
 
 - script: |
+    echo "caca"
     git diff
+    git remote remove azure || true
+    git remote add azure "https://dev.azure.com/tlonchampt/_git/armand"
+    git fetch azure
+    git checkout main
+    git status
+    git push azure main --force
   displayName: "Synchroniser GitHub avec Azure DevOps"
