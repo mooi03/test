@@ -11,15 +11,13 @@ steps:
   persistCredentials: true
 
 - script: |
+    git remote remove azure || true
     git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
-    
     git fetch azure
-    git branch -r | grep -v '\->' | sed 's/origin\///' | while read branch; do
-        git push azure --delete "$branch" || true 
-    done
-
+    for /f "tokens=*" %%i in ('git branch -r ^| findstr /v "->"') do (
+        git push azure --delete %%i || true
+    )
     git checkout main
-    git pull origin main  
-
+    git pull origin main
     git push azure main:main --force
   displayName: "Supprimer tout le dépôt Azure DevOps et copier depuis GitHub"
