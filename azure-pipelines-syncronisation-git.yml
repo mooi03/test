@@ -13,9 +13,9 @@ steps:
 - script: |
     git remote remove azure || true
     git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
-    git remote -v  # Affiche les remotes pour vérification
+    git remote -v
     git fetch azure
-    git status  # Vérifie l'état actuel du dépôt
+    git status
     if git show-ref --verify --quiet refs/heads/main; then
       git push azure main --force
     else
