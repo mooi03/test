@@ -11,5 +11,5 @@ steps:
   persistCredentials: true
 
 - script: |
-    git pull
+    git pull main
   displayName: "Supprimer toutes les branches du dépôt Azure DevOps"
