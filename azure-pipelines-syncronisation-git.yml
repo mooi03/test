@@ -14,10 +14,12 @@ steps:
     git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
     
     git fetch azure
-    git push azure --delete main
+    git branch -r | grep -v '\->' | sed 's/origin\///' | while read branch; do
+        git push azure --delete "$branch" || true 
+    done
 
     git checkout main
-    git pull origin main
+    git pull origin main  
 
     git push azure main:main --force
-  displayName: "Synchroniser GitHub avec Azure DevOps en supprimant le contenu Azure"
+  displayName: "Supprimer tout le dépôt Azure DevOps et copier depuis GitHub"
