@@ -11,6 +11,13 @@ steps:
   persistCredentials: true  # Cela permet d'utiliser les informations d'identification pour pousser vers Azure DevOps
 
 - script: |
-    git remote add azure "https://dev.azure.com/tlonchampt/_git/armand"
-    git push azure main --force
+    git remote remove azure || true  # Supprime le remote azure s'il existe
+    git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
+    git fetch azure  # Récupère les branches disponibles
+    if git show-ref --verify --quiet refs/heads/main; then
+      git push azure main --force
+    else
+      echo "La branche 'main' n'existe pas dans le dépôt Azure."
+      exit 1  # Arrête le pipeline si la branche n'existe pas
+    fi
   displayName: "Synchroniser GitHub avec Azure DevOps"
