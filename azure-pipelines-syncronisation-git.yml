@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+      - main  # Déclenche le pipeline pour chaque commit sur la branche "main" de GitHub
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+  persistCredentials: true  # Cela permet d'utiliser les informations d'identification pour pousser vers Azure DevOps
+
+- script: |
+    git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
+    git push azure main --force
+  displayName: "Synchroniser GitHub avec Azure DevOps"
