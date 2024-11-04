@@ -14,6 +14,6 @@ steps:
 - script: |
     echo "branch"
     git branch
-    echo "fetch origin"
-    git fetch origin
+    echo "pull"
+    git pull origin main
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
