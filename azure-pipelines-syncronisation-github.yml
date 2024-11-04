@@ -7,16 +7,13 @@ pool:
   name: 'default'
 
 steps:
-- checkout: self
-  persistCredentials: true
-  fetchDepth: 0
 
 - script: |
     git clone https://github.com/mooi03/test github
     cd .\github
-    git remote remove azure || exit 0
     git remote add azure https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand
     git push azure main
+    git remote remove azure || exit 0
     cd ..
     Remove-Item -Recurse -Force .\github
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
