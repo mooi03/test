@@ -12,5 +12,5 @@ steps:
   fetchDepth: 0
 
 - script: |
-    git checkout
+    git branch
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
