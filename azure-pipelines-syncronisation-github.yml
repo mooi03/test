@@ -9,9 +9,10 @@ pool:
 steps:
 
 - script: |
-    git clone https://github.com/mooi03/test github
     dir
+    git branch
     git remote add azure https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand
-    git push azure main
+    dir
+    git push azure FETCH_HEAD
     git remote remove azure || exit 0
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
