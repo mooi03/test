@@ -13,4 +13,5 @@ steps:
 
 - script: |
     git branch
+    git checkout
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
