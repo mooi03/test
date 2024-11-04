@@ -12,7 +12,13 @@ steps:
   fetchDepth: 0
 
 - script: |
+    git clone https://github.com/mooi03/test github
+    ls
+    cd .\github
     git remote remove azure || exit 0
     git remote add azure https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand
-    git push azure main:main --force
+    git push azure main
+
+    cd ..
+    Remove-Item -Recurse -Force .\github
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
