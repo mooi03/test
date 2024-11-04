@@ -11,11 +11,7 @@ steps:
 - script: |
     git clone https://github.com/mooi03/test github
     dir
-    cd .\github
-    dir
     git remote add azure https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand
     git push azure main
     git remote remove azure || exit 0
-    cd ..
-    rmdir .\github
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
