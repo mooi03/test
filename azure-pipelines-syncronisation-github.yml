@@ -12,7 +12,7 @@ steps:
   fetchDepth: 0
 
 - script: |
-    echo "branch"
+    cd
     git branch
     echo "pull"
     git pull origin main
