@@ -15,5 +15,6 @@ steps:
     git remote remove azure || exit 0
     git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
     git pull origin main
+    git fetch --all
     git push azure main --force
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
