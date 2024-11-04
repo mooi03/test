@@ -12,9 +12,5 @@ steps:
   fetchDepth: 0
 
 - script: |
-    git remote remove azure || exit 0
-    git remote add azure "https://dev.azure.com/tlonchampt2/_git/armand"
-    git pull origin main
-    git fetch --all
-    git push azure main --force
+    git checkout
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
