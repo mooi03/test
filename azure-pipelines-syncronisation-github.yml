@@ -12,11 +12,12 @@ steps:
   fetchDepth: 0
 
 - script: |
-    git remote remove azure || exit 0
-    git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand
+    git clone "https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand"
     cd
+    git checkout
     git log
     git branch
     echo "pull"
     git pull origin main
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
+
