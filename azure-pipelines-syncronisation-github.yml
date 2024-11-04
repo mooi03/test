@@ -14,6 +14,6 @@ steps:
 - script: |
     echo "branch"
     git branch
-    echo "checkout"
-    git checkout
+    echo "fetch origin"
+    git fetch origin
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
