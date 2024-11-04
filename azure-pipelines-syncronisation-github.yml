@@ -14,7 +14,5 @@ steps:
 - script: |
     git remote remove azure || exit 0
     git remote add azure https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand
-    git push azure main --force
-    git push https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand main
-  displayName: "Synchroniser GitHub main avec Azure DevOps main"
-
+    git push azure main:maine --force
+  displayName: "Synchroniser GitHub main avec Azure DevOps maine"
