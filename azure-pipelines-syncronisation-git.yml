@@ -11,5 +11,7 @@ steps:
   persistCredentials: true
 
 - script: |
-    git pull main
-  displayName: "Supprimer toutes les branches du dépôt Azure DevOps"
+    git remote add azure "https://dev.azure.com/tlonchampt/_git/armand"
+    git pull origin main
+    git push azure main:master --force
+  displayName: "Synchroniser GitHub main avec Azure DevOps master"
