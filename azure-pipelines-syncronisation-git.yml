@@ -11,7 +11,8 @@ steps:
   persistCredentials: true
 
 - script: |
-    git remote add azure "https://dev.azure.com/tlonchampt/_git/armand"
+    git remote remove azure || true
+    git remote add azure "https://dev.azure.com/tlonchampt/armand/_git/armand"
     git pull origin main
     git push azure main:master --force
   displayName: "Synchroniser GitHub main avec Azure DevOps master"
