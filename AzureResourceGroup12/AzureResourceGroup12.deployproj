@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>93a82b7c-40f3-404d-bfe6-4e2ed9e2579e</ProjectGuid>
+    <ProjectGuid>e2a2202c-ec6f-4036-9ee1-15a9f4b7302f</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
     <PrepareForBuildDependsOn>
@@ -25,6 +25,7 @@
   <ItemGroup>
     <Content Include="azuredeploy.json" />
     <Content Include="azuredeploy.parameters.json" />
+    <None Include="Cloud-Init.txt" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
