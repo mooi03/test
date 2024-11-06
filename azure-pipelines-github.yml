@@ -12,7 +12,7 @@ steps:
     git rev-parse --is-shallow-repository
     git fetch --unshallow
     git rev-parse --is-shallow-repository
-    git remote add azure git remote add origin https://timotheelonchampt@dev.azure.com/timotheelonchampt/alexandre/_git/alexandre
+    git remote add azure https://timotheelonchampt@dev.azure.com/timotheelonchampt/alexandre/_git/alexandre
     git push azure HEAD:main --force
     git remote remove azure || exit 0
   displayName: "Synchroniser GitHub main avec Azure DevOps main"
