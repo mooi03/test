@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  name: 'default'
+
+steps:
+
+- script: |
+    git rev-parse --is-shallow-repository
+    git fetch --unshallow
+    git rev-parse --is-shallow-repository
+    git remote add azure https://tlonchampt2@dev.azure.com/tlonchampt2/armand/_git/armand
+    git push azure HEAD:main --force
+    git remote remove azure || exit 0
+  displayName: "Synchroniser GitHub main avec Azure DevOps main"
