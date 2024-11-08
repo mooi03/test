@@ -1,0 +1,50 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vaults_MotDePasseAdmin_name": {
+            "defaultValue": "MotDePasseAdmin",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2024-04-01-preview",
+            "name": "[parameters('vaults_MotDePasseAdmin_name')]",
+            "location": "canadacentral",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "Standard"
+                },
+                "tenantId": "d78d4e96-a842-48bb-836d-6434d5a7ddf2",
+                "accessPolicies": [],
+                "enabledForDeployment": true,
+                "enabledForDiskEncryption": false,
+                "enabledForTemplateDeployment": true,
+                "enableSoftDelete": true,
+                "softDeleteRetentionInDays": 90,
+                "enableRbacAuthorization": true,
+                "vaultUri": "https://motdepasseadmin.vault.azure.net/",
+                "provisioningState": "Succeeded",
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/secrets",
+            "apiVersion": "2024-04-01-preview",
+            "name": "[concat(parameters('vaults_MotDePasseAdmin_name'), '/AdminPass')]",
+            "location": "canadacentral",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_MotDePasseAdmin_name'))]"
+            ],
+            "properties": {
+                "attributes": {
+                    "enabled": true
+                }
+            }
+        }
+    ]
+}
