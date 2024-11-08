@@ -5,6 +5,10 @@
     "vaults_AdminMDP_name": {
       "defaultValue": "AdminMDP",
       "type": "String"
+    },
+    "secretValue": {
+      "type": "SecureString",
+      "defaultValue": "votre_valeur_secret" // Remplacez par la valeur souhaitée
     }
   },
   "variables": {},
@@ -33,9 +37,22 @@
         "enableSoftDelete": true,
         "softDeleteRetentionInDays": 90,
         "enableRbacAuthorization": true,
-        "vaultUri": "https://adminmdp.vault.azure.net/",
-        "provisioningState": "Succeeded",
         "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2024-04-01-preview",
+      "name": "[concat(parameters('vaults_AdminMDP_name'), '/MDP')]",
+      "location": "canadacentral",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_AdminMDP_name'))]"
+      ],
+      "properties": {
+        "value": "[parameters('secretValue')]",
+        "attributes": {
+          "enabled": true
+        }
       }
     }
   ]
