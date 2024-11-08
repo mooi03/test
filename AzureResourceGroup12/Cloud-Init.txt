@@ -17,6 +17,6 @@ write_files:
       }
 runcmd:
   # Télécharger le fichier HTML depuis GitHub
-  - wget -O /var/www/html/index.html https://github.com/mooi03/test/main/index.html
+  - wget -O /var/www/html/index.html https://raw.githubusercontent.com/mooi03/test/main/index.html
   # Démarrer Nginx
   - service nginx restart
