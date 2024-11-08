@@ -22,5 +22,6 @@ steps:
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.SourcesDirectory)\AzureResourceGroup12\template-key-vault.json'
     csmParametersFile: '$(Build.SourcesDirectory)\AzureResourceGroup12\parameters-key-vault.json'
+    overrideParameters: '-vaults_MotDePasseAdmin_name $(AdminPass)'
     deploymentMode: 'Incremental'
 
