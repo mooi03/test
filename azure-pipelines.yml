@@ -13,6 +13,7 @@ variables:
 
 steps:
 - task: PowerShell@2
+  displayName: 'Could Init'
   inputs:
     targetType: 'inline'
     script: |
@@ -26,6 +27,7 @@ steps:
     echo $(CloudInitContent)
 
 - task: AzureKeyVault@2
+  displayName: 'Azure key-vault password'
   inputs:
     azureSubscription: 'Azure subscription 1(1)(564b93c0-8739-4bbe-8f21-bfa2192d4a08)'
     KeyVaultName: 'groscaca'
@@ -36,6 +38,22 @@ steps:
       echo New value $(AzureKey.MDP)
 
 - task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Validate ARM Template'
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azure subscription 1(564b93c0-8739-4bbe-8f21-bfa2192d4a08)'
+    subscriptionId: '564b93c0-8739-4bbe-8f21-bfa2192d4a08'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'projet-azure'
+    location: 'Canada Central'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(Build.SourcesDirectory)\AzureResourceGroup12\azuredeploy.json'
+    csmParametersFile: '$(Build.SourcesDirectory)\AzureResourceGroup12\azuredeploy.parameters.json'
+    overrideParameters: '-customData $(CloudInitContent) -adminPassword $(MDP)'
+    deploymentMode: 'Validation'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Deploy ARM Template'
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'Azure subscription 1(564b93c0-8739-4bbe-8f21-bfa2192d4a08)'
