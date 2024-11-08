@@ -8,7 +8,7 @@
     },
     "secretValue": {
       "type": "SecureString",
-      "defaultValue": "votre_valeur_secret" // Remplacez par la valeur souhaitée
+      "defaultValue": "JeSuisFlashMcQu33n"
     }
   },
   "variables": {},
