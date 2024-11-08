@@ -4,10 +4,24 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- none
 
 pool:
   name: default 
 
 steps:
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azure subscription 1(1)(564b93c0-8739-4bbe-8f21-bfa2192d4a08)'
+    subscriptionId: '564b93c0-8739-4bbe-8f21-bfa2192d4a08'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'key-vault'
+    location: 'Canada Central'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(Build.SourcesDirectory)\AzureResourceGroup12\template-key-vault.json'
+    csmParametersFile: '$(Build.SourcesDirectory)\AzureResourceGroup12\parameters-key-vault.json'
+    overrideParameters: '-vaults_MotDePasseAdmin_name $(KeyPass)'
+    deploymentMode: 'Incremental'
 
